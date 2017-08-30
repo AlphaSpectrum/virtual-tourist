@@ -16,7 +16,7 @@ class SelectedAnnotationViewController: UIViewController, UICollectionViewDelega
     let reuseCell = "collectionViewCell"
     
     var selectedPin: MKAnnotation!
-    var photoURLS: [String]!
+    var photoLinks: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class SelectedAnnotationViewController: UIViewController, UICollectionViewDelega
                 for photo in photos! {
                     photoURLArray.append(photo.url)
                 }
-                self.photoURLS = photoURLArray
+                self.photoLinks = photoURLArray
                 performUIUpdatesOnMain {
                     self.collectionView.reloadData()
                 }
@@ -60,8 +60,8 @@ class SelectedAnnotationViewController: UIViewController, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if photoURLS != nil {
-            return photoURLS.count
+        if photoLinks != nil {
+            return photoLinks.count
         } else {
             return 0
         }
@@ -73,8 +73,8 @@ class SelectedAnnotationViewController: UIViewController, UICollectionViewDelega
         activityIndicator.backgroundColor = .black
         cell.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-            let photo = photoURLS[indexPath.row]
-            cell.imageView.downloadedFrom(link: photo) {
+            let photoLink = photoLinks[indexPath.row]
+            cell.imageView.downloadedFrom(string: photoLink) {
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }

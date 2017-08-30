@@ -27,8 +27,8 @@ extension UIImageView {
             }.resume()
     }
     
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFill, completion: @escaping () -> Void) {
-        guard let url = URL(string: link) else { return }
+    func downloadedFrom(string: String, contentMode mode: UIViewContentMode = .scaleAspectFill, completion: @escaping () -> Void) {
+        guard let url = URL(string: string) else { return }
         downloadedFrom(url: url, contentMode: mode, completion: {
             completion()
         })
